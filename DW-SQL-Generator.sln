@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DW-SQL-Generator", "DW-SQL-Generator\DW-SQL-Generator.csproj", "{E8152326-A64E-4E61-9052-A0C0578A779A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8152326-A64E-4E61-9052-A0C0578A779A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8152326-A64E-4E61-9052-A0C0578A779A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8152326-A64E-4E61-9052-A0C0578A779A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8152326-A64E-4E61-9052-A0C0578A779A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B41F954-7EB1-45F0-821F-168F12146F43}
+	EndGlobalSection
+EndGlobal
