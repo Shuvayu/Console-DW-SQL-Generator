@@ -41,11 +41,12 @@ namespace DW_SQL_Generator
 
             var sqlGenerator = new SQLGeneratorService();
 
-            var hashSelectStatement = sqlGenerator.GenerateHashFromTemplate(columns);
+            var hashSelectStatement = sqlGenerator.GenerateHashFromTemplate(columns, appSettings.TableName);
             var mergeStatement = sqlGenerator.GenerateMergeFromTemplate(columns, appSettings.TableName, appSettings.SchemaName);
 
-            DataRepository.OutputToTxtFile(hashSelectStatement);
-            DataRepository.OutputToTxtFile(mergeStatement);
+            var completeText = string.Concat(hashSelectStatement, mergeStatement);
+
+            DataRepository.OutputToTxtFile(completeText);
             
             Console.WriteLine("Task Completed !!!");
         }

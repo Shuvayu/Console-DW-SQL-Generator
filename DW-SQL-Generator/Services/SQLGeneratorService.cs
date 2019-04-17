@@ -11,11 +11,11 @@ namespace DW_SQL_Generator.Services
 {
     public class SQLGeneratorService
     {
-        public string GenerateHashFromTemplate(List<TableMapping> tableColumns)
+        public string GenerateHashFromTemplate(List<TableMapping> tableColumns, string tableName)
         {
             try
             {
-                return HashFunction.Build(tableColumns);
+                return HashFunction.Build(tableColumns, tableName);
             }
             catch (Exception ex)
             {

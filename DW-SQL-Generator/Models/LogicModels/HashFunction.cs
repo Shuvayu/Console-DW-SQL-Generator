@@ -6,11 +6,24 @@ namespace DW_SQL_Generator.Models.LogicModels
 {
     public class HashFunction
     {
-        public static string Build(List<TableMapping> tableColumns)
+        public static string Build(List<TableMapping> tableColumns, string tableName)
         {
 
             var resultString = new StringBuilder();
-
+            resultString.AppendLine();
+            resultString.AppendLine($"CREATE PROCEDURE [stg].[{tableName}_CreateHashValuesForAllStagingWorklogs]");
+            resultString.Append($"@CurrentLoadTime DATETIME");
+            resultString.AppendLine();
+            resultString.AppendLine("AS");
+            resultString.AppendLine("BEGIN");
+            resultString.AppendLine();
+            resultString.AppendLine("SET NOCOUNT ON");
+            resultString.AppendLine("SET XACT_ABORT ON");
+            resultString.AppendLine();
+            resultString.AppendLine("-- Drop temp table if its exists");
+            resultString.AppendLine($"IF OBJECT_ID('tempdb..##hvTempTable{tableName}') IS NOT NULL");
+            resultString.AppendLine($"DROP TABLE #hvTempTable{tableName}");
+            resultString.AppendLine();
             resultString.Append("SELECT ");
             resultString.AppendLine();
 
@@ -58,6 +71,15 @@ namespace DW_SQL_Generator.Models.LogicModels
             }
 
             resultString.Append(") AS hbSource ");
+            resultString.AppendLine($"FROM [stg].[Staging{tableName}]");
+            resultString.AppendLine();
+            resultString.AppendLine("-- Update the staging table");
+            resultString.AppendLine($"UPDATE [stg].[Staging{tableName}]");
+            resultString.AppendLine("SET hash_value = TEMP.hbSource, LoadTime = @CurrentLoadTime ");
+            resultString.AppendLine($"FROM #hvTempTable{tableName} TEMP ");
+            resultString.AppendLine($"INNER JOIN [stg].[Staging{ tableName}] ST");
+            resultString.AppendLine($"ON ST.[ID] = TEMP.[ID] -- ADD PRIMARY KEY IDENTIFIER HERE");
+            resultString.AppendLine("END");
             resultString.AppendLine();
 
             return resultString.ToString();

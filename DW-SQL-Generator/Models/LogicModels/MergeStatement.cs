@@ -11,7 +11,7 @@ namespace DW_SQL_Generator.Models.LogicModels
         {
 
             var resultString = new StringBuilder();
-
+            resultString.AppendLine();
             resultString.AppendLine($"CREATE PROCEDURE [stg].[{tableName}_MergeDataIntoDestination]");
             resultString.Append($"@CurrentLoadTime DATETIME");
             resultString.AppendLine();
@@ -98,6 +98,7 @@ namespace DW_SQL_Generator.Models.LogicModels
             resultString.AppendLine();
             resultString.AppendLine("END CATCH");
             resultString.AppendLine("END");
+            resultString.AppendLine();
             return resultString.ToString();
         }
     }
