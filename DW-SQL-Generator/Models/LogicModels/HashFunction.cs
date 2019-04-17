@@ -4,9 +4,9 @@ using System.Text;
 
 namespace DW_SQL_Generator.Models.LogicModels
 {
-    public class BuildHashFunction
+    public class HashFunction
     {
-        public static string BuildStatement(List<TableMapping> tableColumns)
+        public static string Build(List<TableMapping> tableColumns)
         {
 
             var resultString = new StringBuilder();
@@ -32,6 +32,8 @@ namespace DW_SQL_Generator.Models.LogicModels
                 }
                 else if (column.DATA_TYPE == "float" ||
                     column.DATA_TYPE == "int" ||
+                    column.DATA_TYPE == "bigint" ||
+                    column.DATA_TYPE == "numeric" ||
                     column.DATA_TYPE == "decimal" ||
                     column.DATA_TYPE == "bit" ||
                     column.DATA_TYPE == "real")

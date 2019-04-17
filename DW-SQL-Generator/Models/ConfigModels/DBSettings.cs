@@ -11,5 +11,10 @@
 
         public string SchemaName { get; set; }
 
+
+        public bool IsNotValid() {
+
+            return string.IsNullOrEmpty(ConnectionString) || string.IsNullOrEmpty(DatabaseName) || string.IsNullOrEmpty(TableName) ? true : false;
+        }
     }
 }

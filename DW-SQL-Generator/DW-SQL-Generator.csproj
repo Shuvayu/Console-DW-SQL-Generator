@@ -15,7 +15,10 @@
 </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.json">
+    <None Update="appSettings.development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appSettings.template.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
