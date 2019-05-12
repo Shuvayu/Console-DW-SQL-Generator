@@ -34,10 +34,18 @@ namespace DW_SQL_Generator
             if (appSettings.IsNotValid())
             {
                 Console.WriteLine("Parameters are empty !!!");
+                Environment.Exit(0);
             }
 
             var dataRepository = new DataRepository(appSettings.ConnectionString);
             var columns = (await dataRepository.DbCallForSchema(appSettings.DatabaseName, appSettings.TableName, appSettings.SchemaName)).ToList();
+
+            if (columns.Count == 0)
+            {
+                Console.WriteLine("Table columns are empty are empty !!!");
+                Environment.Exit(0);
+            }
+
 
             var sqlGenerator = new SQLGeneratorService();
 

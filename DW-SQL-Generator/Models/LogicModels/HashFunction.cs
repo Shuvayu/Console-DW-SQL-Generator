@@ -11,7 +11,7 @@ namespace DW_SQL_Generator.Models.LogicModels
 
             var resultString = new StringBuilder();
             resultString.AppendLine();
-            resultString.AppendLine($"CREATE PROCEDURE [stg].[{tableName}_CreateHashValuesForAllStagingWorklogs]");
+            resultString.AppendLine($"CREATE PROCEDURE [stg].[{tableName}_CreateHashValuesForAllStaging{tableName}]");
             resultString.Append($"@CurrentLoadTime DATETIME");
             resultString.AppendLine();
             resultString.AppendLine("AS");
@@ -34,6 +34,7 @@ namespace DW_SQL_Generator.Models.LogicModels
             {
                 if (column.DATA_TYPE == "varchar" ||
                     column.DATA_TYPE == "nvarchar" ||
+                    column.DATA_TYPE == "char" ||
                     column.DATA_TYPE == "date" ||
                     column.DATA_TYPE == "time" ||
                     column.DATA_TYPE == "datetime" ||
@@ -45,6 +46,8 @@ namespace DW_SQL_Generator.Models.LogicModels
                 }
                 else if (column.DATA_TYPE == "float" ||
                     column.DATA_TYPE == "int" ||
+                    column.DATA_TYPE == "tinyint" ||
+                    column.DATA_TYPE == "smallint" ||
                     column.DATA_TYPE == "bigint" ||
                     column.DATA_TYPE == "numeric" ||
                     column.DATA_TYPE == "decimal" ||
@@ -65,7 +68,8 @@ namespace DW_SQL_Generator.Models.LogicModels
                 }
                 else
                 {
-                    resultString.Append("Dont know what datatype that is !!!");
+                    resultString.Append("Dont know what datatype that is !!! :");
+                    resultString.Append(column.DATA_TYPE);
                     resultString.AppendLine();
                 }
             }
