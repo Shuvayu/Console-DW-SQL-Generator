@@ -8,7 +8,6 @@ namespace DW_SQL_Generator.Models.LogicModels
     {
         public static string Build(List<TableMapping> tableColumns, string tableName)
         {
-
             var resultString = new StringBuilder();
             resultString.AppendLine();
             resultString.AppendLine($"CREATE PROCEDURE [stg].[{tableName}_CreateHashValuesForAllStaging{tableName}]");
@@ -75,6 +74,7 @@ namespace DW_SQL_Generator.Models.LogicModels
             }
 
             resultString.Append(") AS hbSource ");
+            resultString.Append($"INTO #hvTempTable{tableName}");
             resultString.AppendLine($"FROM [stg].[Staging{tableName}]");
             resultString.AppendLine();
             resultString.AppendLine("-- Update the staging table");

@@ -77,7 +77,7 @@ namespace DW_SQL_Generator.Models.LogicModels
             resultString.AppendLine("[IsActive] = 0,");
             resultString.AppendLine("[DeletedTime] = @CurrentLoadTime");
             resultString.AppendLine($"FROM [stg].[Staging{tableName}] STAGING");
-            resultString.AppendLine($"RIGHT JOIN [{schemaName}].[{tableName}] FINAL");
+            resultString.AppendLine($"LEFT JOIN [{schemaName}].[{tableName}] FINAL");
             resultString.AppendLine($"ON STAGING.[ID] = FINAL.[ID] -- ADD PRIMARY KEY IDENTIFIER HERE");
             resultString.AppendLine($"WHERE STAGING.[ID] IS NULL;");
             resultString.AppendLine();
